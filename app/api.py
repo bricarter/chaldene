@@ -60,3 +60,29 @@ def add_resource_request():
     g.db.close()
     
     return "resource request added successfully."
+
+
+@app.route('/api/requests/<int:id>', methods=['PUT'])
+def update_resource_request(id:int):
+    connect_db()
+
+    requested = g.db.get(Resource, id)
+    if requested is None:
+        g.db.close()
+        return "that resource request is not available at this time."
+    
+    update_item = request.json.get("item", None)
+    invalid_request = g.db.execute(select(Resource).where(Resource.item == update_item)).first()
+    
+    if invalid_request:
+        g.db.close()
+        return "that resource request already exists."
+
+    requested.item = request.json.get("item", requested.item)
+    requested.description = request.json.get("description", requested.description)
+    requested.quantity = request.json.get("quantity", requested.quantity)
+
+    g.db.commit()
+    g.db.close()
+    
+    return "resource request updated successfully."
