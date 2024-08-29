@@ -84,5 +84,21 @@ def update_resource_request(id:int):
 
     g.db.commit()
     g.db.close()
-    
+
     return "resource request updated successfully."
+
+
+@app.route('/api/requests/<int:id>', methods=['DELETE'])
+def delete_resource_request(id:int):
+    connect_db()
+    requested = g.db.get(Resource, id)
+
+    if requested is None:
+        g.db.close()
+        return "that resource request is not available at this time."
+    
+    g.db.delete(requested)
+    g.db.commit()
+    g.db.close()
+    
+    return "resource request deleted successfully."

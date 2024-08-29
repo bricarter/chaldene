@@ -50,6 +50,16 @@ class TestAPI(BaseTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.get_data(as_text=True), "that resource request is not available at this time.")
 
+    def test_delete_resource_request(self):
+        response = self.client.delete(f"/api/requests/{3}")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_data(as_text=True), "resource request deleted successfully.")
+
+        # invalid id
+        response = self.client.delete(f"/api/requests/{9}")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_data(as_text=True), "that resource request is not available at this time.")    
+
 
 
 
