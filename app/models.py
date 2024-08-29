@@ -14,7 +14,7 @@ class Nonprofit(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     nonprofit_name: Mapped[str]  
     description: Mapped[Optional[str]]
-    demand: Mapped[List["Resource"]] = relationship(back_populates="nonprofit")
+    # demand: Mapped[List["Resource"]] = relationship(back_populates="nonprofit")
     
 
 class Resource(Base):
@@ -27,4 +27,4 @@ class Resource(Base):
     quantity: Mapped[int] = mapped_column(default=1)
     last_updated: Mapped[str] = mapped_column(server_default=func.now(), onupdate=func.now())
     
-    non_profit: Mapped[Nonprofit] = relationship(back_populates="demand")
+    # non_profit: Mapped[Nonprofit] = relationship(back_populates="demand")
