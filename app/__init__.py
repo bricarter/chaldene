@@ -17,8 +17,6 @@ def create_app(config_name="development"):
         from .db import init_db
         init_db()
 
-    @app.route("/")
-    def index():
-        return "Hello, World."
+        from . import api
 
     return app
