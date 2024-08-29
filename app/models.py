@@ -28,3 +28,7 @@ class Resource(Base):
     last_updated: Mapped[str] = mapped_column(server_default=func.now(), onupdate=func.now())
     
     # non_profit: Mapped[Nonprofit] = relationship(back_populates="demand")
+
+    def validate_input(self):
+        if self.item is None:
+            return "ERROR: item is required."

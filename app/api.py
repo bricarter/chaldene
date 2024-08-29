@@ -1,4 +1,4 @@
-from flask import current_app as app, g
+from flask import current_app as app, g, request
 from sqlalchemy import select
 
 from .db import connect_db
@@ -34,3 +34,29 @@ def get_individual_request(id:int):
     del requested.__dict__['_sa_instance_state']
 
     return [requested.__dict__]
+
+
+@app.route('/api/requests', methods=['POST'])
+def add_resource_request():
+    new_request = Resource(
+        item=request.json.get("item", None), 
+        quantity=request.json.get("quantity", None), 
+        description=request.json.get("description", None)
+    )
+
+    invalid_request = new_request.validate_input()
+    if invalid_request:
+        return invalid_request
+
+    connect_db()
+
+    invalid_request = g.db.execute(select(Resource).where(Resource.item == new_request.item)).first()
+    if invalid_request:
+        g.db.close()
+        return "that resource request already exists."
+    
+    g.db.add(new_request)
+    g.db.commit()
+    g.db.close()
+    
+    return "resource request added successfully."
