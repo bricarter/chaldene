@@ -11,11 +11,11 @@ engine = create_engine(f"sqlite+pysqlite:///{current_app.config['DATABASE']}", e
 
 
 def connect_db():
-    if 'db' not in g:
+    if "db" not in g:
         g.db = Session(engine) 
 
 
 def init_db():
     makedirs(current_app.instance_path, exist_ok=True)
     Base.metadata.create_all(engine)
-    current_app.logger.info('database initialized')
+    current_app.logger.info("database initialized")

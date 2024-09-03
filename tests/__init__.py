@@ -39,7 +39,7 @@ class BaseTestCase(unittest.TestCase):
             }
         }
 
-        con = sqlite3.connect(cls.app.config['DATABASE'])
+        con = sqlite3.connect(cls.app.config["DATABASE"])
         cur = con.cursor()
         cur.executemany("INSERT INTO nonprofit (nonprofit_name) VALUES (:nonprofit_name);", [cls.test_data[1], cls.test_data[2], cls.test_data[3]])
         con.commit()
@@ -51,4 +51,4 @@ class BaseTestCase(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        os.remove(cls.app.config['DATABASE'])
+        os.remove(cls.app.config["DATABASE"])

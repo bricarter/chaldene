@@ -5,7 +5,7 @@ from .db import connect_db
 from .models import Resource
 
 
-@app.route('/api/requests', methods=['GET'])
+@app.route("/api/requests", methods=["GET"])
 def get_resource_requests():
     connect_db()
     requested = g.db.execute(select(Resource)).scalars().all()
@@ -16,13 +16,13 @@ def get_resource_requests():
         
     requests = list()
     for row in requested:
-        del row.__dict__['_sa_instance_state']
+        del row.__dict__["_sa_instance_state"]
         requests.append(row.__dict__)
 
     return requests
 
 
-@app.route('/api/requests/<int:id>', methods=['GET'])
+@app.route("/api/requests/<int:id>", methods=["GET"])
 def get_individual_request(id:int):
     connect_db()
     requested = g.db.get(Resource, id)
@@ -31,12 +31,12 @@ def get_individual_request(id:int):
     if requested is None:
         return "that resource request is not available at this time."
     
-    del requested.__dict__['_sa_instance_state']
+    del requested.__dict__["_sa_instance_state"]
 
     return [requested.__dict__]
 
 
-@app.route('/api/requests', methods=['POST'])
+@app.route("/api/requests", methods=["POST"])
 def add_resource_request():
     new_request = Resource(
         item=request.json.get("item", None), 
@@ -62,7 +62,7 @@ def add_resource_request():
     return "resource request added successfully."
 
 
-@app.route('/api/requests/<int:id>', methods=['PUT'])
+@app.route("/api/requests/<int:id>", methods=["PUT"])
 def update_resource_request(id:int):
     connect_db()
 
@@ -88,7 +88,7 @@ def update_resource_request(id:int):
     return "resource request updated successfully."
 
 
-@app.route('/api/requests/<int:id>', methods=['DELETE'])
+@app.route("/api/requests/<int:id>", methods=["DELETE"])
 def delete_resource_request(id:int):
     connect_db()
     requested = g.db.get(Resource, id)
