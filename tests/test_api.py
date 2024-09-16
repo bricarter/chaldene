@@ -1,6 +1,6 @@
 import unittest
 
-from .base_testcase import BaseTestCase
+from tests.base_testcase import BaseTestCase
 
 
 class TestAPI(BaseTestCase):
