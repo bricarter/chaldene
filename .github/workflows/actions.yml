@@ -9,5 +9,4 @@ jobs:
         python-version: '3.10'
     - run: |
         pip install -r requirements.txt
-        cd tests/
-        python test_api.py
+        python tests/test_api.py
