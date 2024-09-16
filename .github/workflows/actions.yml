@@ -9,4 +9,5 @@ jobs:
         python-version: '3.10'
     - run: |
         pip install -r requirements.txt
-        flask run
+        cd tests/
+        python test_api.py
