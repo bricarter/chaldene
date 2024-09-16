@@ -2,7 +2,7 @@ import unittest
 import sqlite3
 import os
 
-from app import create_app
+from ./app import create_app
 
 
 class BaseTestCase(unittest.TestCase):
