@@ -10,4 +10,5 @@ jobs:
     - run: |
         pip install -r requirements.txt
         alias top_dir=pwd
-        python -m unittest discover -s ./tests -t top_dir
+        alias start_dir=`top_dir`/tests
+        python -m unittest discover -s start_dir -t top_dir
