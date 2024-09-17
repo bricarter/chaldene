@@ -9,5 +9,5 @@ jobs:
         python-version: '3.10'
     - run: |
         pip install -r requirements.txt
-        echo pwd
-        python -m unittest discovery -t pwd
+        alias top_dir=pwd
+        python -m unittest discovery -t top_dir
