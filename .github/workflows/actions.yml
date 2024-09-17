@@ -9,8 +9,9 @@ jobs:
         python-version: '3.10'
     - run: |
         pip install -r requirements.txt
-        alias top_dir=`pwd`
+        alias top_dir=pwd
         alias start_dir=$(top_dir)/tests
         echo $(top_dir)
         echo $(start_dir)
+        echo "------------"
         python -m unittest discover -s $(start_dir) -t $(top_dir)
