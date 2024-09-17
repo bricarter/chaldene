@@ -9,7 +9,7 @@ jobs:
         python-version: '3.10'
     - run: |
         pip install -r requirements.txt
-        alias top_dir=pwd
+        alias top_dir="/home/runner/work/chaldene/chaldene"
         alias start_dir="$(top_dir)/tests"
         echo $(top_dir)
         echo $(start_dir)
