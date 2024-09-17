@@ -2,7 +2,7 @@ import unittest
 import sqlite3
 import os
 
-from . import create_app
+from chaldene import create_app
 
 
 class BaseTestCase(unittest.TestCase):
