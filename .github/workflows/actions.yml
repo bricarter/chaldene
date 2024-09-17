@@ -10,7 +10,7 @@ jobs:
     - run: |
         pip install -r requirements.txt
         alias top_dir=pwd
-        alias start_dir=$(top_dir)/tests
+        alias start_dir="$(top_dir)/tests"
         echo $(top_dir)
         echo $(start_dir)
         echo "------------"
