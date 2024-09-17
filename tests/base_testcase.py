@@ -2,7 +2,7 @@ import unittest
 import sqlite3
 import os
 
-from chaldene.wsgi import create_app
+from wsgi import create_app
 
 
 class BaseTestCase(unittest.TestCase):
