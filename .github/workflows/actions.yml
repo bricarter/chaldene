@@ -9,4 +9,5 @@ jobs:
         python-version: '3.10'
     - run: |
         pip install -r requirements.txt
-        python tests/test_api.py
+        echo pwd
+        python -m unittest discovery -t pwd
